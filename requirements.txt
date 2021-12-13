@@ -1,0 +1,6 @@
+fastapi
+sqlalchemy
+pydantic
+fastapi_crudrouter
+uvicorn
+alembic
