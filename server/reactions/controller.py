@@ -84,6 +84,9 @@ class command:
             elif platform.system() == "Linux":
                 command = "sudo -u pi /usr/bin/chromium {}"
                 try:
+                    sp = subprocess.Popen(["/usr/bin/chromium", "https://google.com"],
+                                          env=dict(os.environ, DISPLAY="0.0", XAUTHORITY="/home/pi/.Xauthority"))
+                    """
                     sp = subprocess.run(
                         command.format(self.target),
                         shell=True,
@@ -91,6 +94,7 @@ class command:
                         env=dict(os.environ, DISPLAY=":0.0",
                                  XAUTHORITY="/home/pi/.Xauthority")
                                         )
+                    """
                     sp.check_returncode()
                 except subprocess.CalledProcessError as e:
                     print("Error:\nreturn code: ", e.returncode,
