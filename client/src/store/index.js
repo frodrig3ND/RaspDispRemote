@@ -20,27 +20,27 @@ const getters = {
 
 const actions = {
   async fetchButtons({ commit }) {
-    const response = await axios.get('http://localhost:8000/actions');
+    const response = await axios.get('http://rasp-disp:8000/actions');
     commit('setButtons', response.data);
   },
   async fetchButtonTypes({ commit }) {
-    const response = await axios.get('http://localhost:8000/action_types');
+    const response = await axios.get('http://rasp-disp:8000/action_types');
     commit('setButtonTypes', response.data);
   },
   async addButton({ commit }, button) {
-    const response = await axios.post('http://localhost:8000/actions', button);
+    const response = await axios.post('http://rasp-disp:8000/actions', button);
     commit('addNewButton', response.data);
   },
   async fetchButton({ commit }, id) {
-    const response = await axios.get(`http://localhost:8000/actions/${id}`);
+    const response = await axios.get(`http://rasp-disp:8000/actions/${id}`);
     commit('setButton', response.data);
   },
   async editButton({ commit }, payload) {
-    const response = await axios.put(`http://localhost:8000/actions/${payload.id}`, payload.data);
+    const response = await axios.put(`http://rasp-disp:8000/actions/${payload.id}`, payload.data);
     commit('modButton', response.data);
   },
   async deleteButton({ commit }, id) {
-    await axios.delete(`http://localhost:8000/actions/${id}`);
+    await axios.delete(`http://rasp-disp:8000/actions/${id}`);
     commit('removeButton', id);
   },
 };
