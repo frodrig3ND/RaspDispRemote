@@ -233,7 +233,7 @@ export default {
       this.btnSelid = '';
     },
     sendCommand(command) {
-      const path = `http://localhost:8000/commands/${command.id}`;
+      const path = `http://rasp-disp:8000/commands/${command.id}`;
       axios.post(path).then(() => {
         console.log(`Command ${command.id} sent`);
       })
