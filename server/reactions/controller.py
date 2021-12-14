@@ -74,9 +74,9 @@ class command:
     def website(self):
         print(self.target)
         try:
-            if platform.system()=="Windows":
+            if platform.system() == "Windows":
                 webbrowser.get()
-            elif platform.system()=="Linux":
+            elif platform.system() == "Linux":
                 webbrowser.get('chromium')
             else:
                 webbrowser.get()
