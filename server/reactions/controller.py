@@ -75,11 +75,11 @@ class command:
         print(self.target)
         try:
             if platform.system() == "Windows":
-               brw =  webbrowser.get()
+                brw = webbrowser.get()
             elif platform.system() == "Linux":
-               brw = webbrowser.get('chromium')
+                brw = webbrowser.get('chromium')
             else:
-               brw =  webbrowser.get()
-            brw.open(self.target, 1)
+                brw = webbrowser.get()
+            brw.open_new_tab(self.target, 1)
         except Exception as e:
             raise e
