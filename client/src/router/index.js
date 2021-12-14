@@ -6,8 +6,8 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/soundboard',
-    name: 'Remote Soundboard',
+    path: '/control',
+    name: 'Remote Control',
     component: Buttons,
   },
 ];
