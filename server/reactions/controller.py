@@ -77,9 +77,22 @@ class command:
             if platform.system() == "Windows":
                 brw = webbrowser.get()
                 brw.open_new_tab(self.target)
+            # This gets hacky, since im running this from systemd
+            # we have to deal with no x display and no root running
+            # on chromium, which makes sense. So we don't use
+            # webbrowser but instead subprocess
             elif platform.system() == "Linux":
-                brw = webbrowser.get('chromium')
-                brw.open_new_tab(self.target, 1)
+                command = "export DISPLAY=: 0; sudo -u pi /usr/bin/chromium {}"
+                try:
+                    sp = subprocess.run(command.format(self.target),
+                                        shell=True,
+                                        capture_output=False)
+                    sp.check_returncode()
+                except subprocess.CalledProcessError as e:
+                    print("Error:\nreturn code: ", e.returncode,
+                          "\nOutput: ", e.stderr.decode("utf-8"))
+                except FileNotFoundError as e:
+                    print(e)
             else:
                 brw = webbrowser.get()
                 brw.open_new_tab(self.target, 1)
