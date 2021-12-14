@@ -82,11 +82,15 @@ class command:
             # on chromium, which makes sense. So we don't use
             # webbrowser but instead subprocess
             elif platform.system() == "Linux":
-                command = "export DISPLAY=: 0; sudo -u pi /usr/bin/chromium {}"
+                command = "sudo -u pi /usr/bin/chromium {}"
                 try:
-                    sp = subprocess.run(command.format(self.target),
-                                        shell=True,
-                                        capture_output=False)
+                    sp = subprocess.run(
+                        command.format(self.target),
+                        shell=True,
+                        capture_output=False,
+                        env=dict(os.environ, DISPLAY=":0.0",
+                                 XAUTHORITY="/home/pi/.Xauthority")
+                                        )
                     sp.check_returncode()
                 except subprocess.CalledProcessError as e:
                     print("Error:\nreturn code: ", e.returncode,
