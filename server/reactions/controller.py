@@ -84,6 +84,7 @@ class command:
             elif platform.system() == "Linux":
                 command = "sudo -u pi /usr/bin/chromium {}"
                 try:
+                    print('Linux attempt')
                     sp = subprocess.call(['sh', '/home/pi/test_webbrowser.sh'])
                     sp.check_returncode()
                 except subprocess.CalledProcessError as e:
