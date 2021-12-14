@@ -1,0 +1,10 @@
+[Unit]
+Description=Remote Disp Service Client
+After=multi-user.target
+
+[Service]
+WorkingDirectory=/home/pi/RaspDispRemote/client
+ExecStart=npm run serve --serve-in-foreground
+
+[Install]
+WantedBy=multi-user.target

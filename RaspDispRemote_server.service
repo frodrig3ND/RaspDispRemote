@@ -1,0 +1,10 @@
+[Unit]
+Description=Remote Disp Service Server
+After=multi-user.target
+
+[Service]
+WorkingDirectory=/home/pi/RaspDispRemote
+ExecStart=/home/pi/RaspDispRemote/env/bin/uvicorn server.main:app --host 0.0.0.0 --reload --serve-in-foreground
+
+[Install]
+WantedBy=multi-user.target
